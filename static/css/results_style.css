@@ -1,0 +1,277 @@
+/* Import font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body */
+body {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #222;
+    background-color: #f0f0f0;
+}
+
+/* Header */
+header {
+    background-color: #4CAF50;
+    padding: 1rem;
+    text-align: center;
+}
+
+header h1 {
+    color: #ffffff;
+    margin: 0;
+    font-size: 2rem;
+}
+
+/* Main content */
+main {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1rem;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+/* Sections */
+section h2 {
+    font-size: 1.6em;
+    font-weight: 600;
+    margin: 25px 0;
+}
+
+/* Assumptions */
+.assumptions-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    background-color: #f8f8f8;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+}
+
+.assumption {
+    flex: 0 0 calc(20% - 10px);
+    text-align: center;
+    margin: 0 5px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.assumption:hover {
+    background-color: #f0f0f0;
+}
+
+.assumption p {
+    margin: 0;
+    font-size: 1em;
+}
+
+.assumption p:first-child {
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #4CAF50;
+}
+
+.assumption p:last-child {
+    font-weight: 500;
+}
+
+
+/* Metrics */
+.metrics-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.metric {
+    flex: 0 0 48%;
+    border: 1px solid #f0f0f0;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.metric p {
+    margin: 0;
+    font-size: 1em;
+}
+
+.metric p:first-child {
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+/* Buttons */
+.back-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #b7afae;
+    /* changed color to red for regression */
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    margin-top: 20px;
+    margin-left: 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 500;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    /* added subtle drop shadow */
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    /* added box-shadow to transition */
+}
+
+.back-button:before {
+    content: "◀";
+    /* added left-pointing arrow icon */
+    margin-right: 5px;
+    /* space between icon and text */
+}
+
+.back-button:hover {
+    background-color: #020202;
+    /* adjusted hover background color */
+    transform: translateY(-2px);
+    /* subtle upward movement on hover */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    /* enhanced drop shadow on hover */
+}
+
+
+.forward-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    margin-top: 20px;
+    margin-left: 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 500;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.forward-button:hover {
+    background-color: #3e8e41;
+    transform: scale(1.05);
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.back-button,
+.forward-button {
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #4CAF50;
+}
+
+footer p {
+    color: #ffffff;
+    margin: 0;
+    font-size: 0.8rem;
+}
+
+/* Media queries */
+@media (max-width: 768px) {
+    section h2 {
+        font-size: 1.6em;
+    }
+
+    .metric {
+        flex: 0 0 100%;
+    }
+}
+
+/* Collapsible */
+.collapsible {
+    cursor: pointer;
+    user-select: none;
+}
+
+.collapsible::after {
+    content: '▼';
+    font-size: 0.8em;
+    float: right;
+    margin-left: 0.5em;
+}
+
+.collapsible.active::after {
+    content: '▲';
+}
+
+.content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    padding: 0 1em;
+}
+
+/* tooltip */
+.tooltip-container {
+    position: relative;
+    display: hide;
+}
+
+.help-icon {
+    cursor: pointer;
+    width: 20px;
+    height: auto;
+}
+
+.tooltip {
+    visibility: hidden;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    font-size: 14px;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    /* Position the tooltip above the input */
+    left: 20%;
+    margin-left: -60px;
+    /* Center the tooltip */
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.help-icon:hover+.tooltip {
+    visibility: visible;
+    opacity: 1;
+}

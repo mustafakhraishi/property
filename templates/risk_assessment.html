@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Risk Assessment - Property Investment Calculator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/risk_assessment_style.css') }}">
+</head>
+
+<body>
+    <header>
+        <h1></h1>
+    </header>
+    <main>
+        <section>
+            <h2>Assumptions</h2>
+            <div class="assumptions-container">
+                <div class="assumption">
+                    <p>Monthly Rent:</p>
+                    <p id="monthly_rent">£ {{ monthly_rent|round(2)  }}</p>
+                </div>
+                <div class="assumption">
+                    <p>Original Borrowed:</p>
+                    <p id="original_borrowed">£ {{ original_borrowed|round(2)  }}</p>
+                </div>
+                <div class="assumption">
+                    <p>Monthly Costs:</p>
+                    <p id="monthly_costs">£ {{ monthly_costs|round(2)  }}</p>
+                </div>
+            </div>
+        </section>        
+        <section>
+            <h2 class="collapsible">Max Spend Calculator</h2>
+            <div class="content">
+                <div class="metric">
+                    <p>Monthly Rent:</p>
+                    <input type="number" id="gross_annual_rent" placeholder="Enter the monthly rent..." />
+                </div>                
+                <div class="metric">
+                    <p>Desired Gross Yield:</p>
+                    <input type="number" id="desired_gross_yield" placeholder="Enter your desired gross yield..."/>
+                </div>
+                <div class="metric">
+                    <p>Maximum Spend:</p>
+                    <p id="maximum_spend">{{ max_spend }}</p>
+                </div>
+            </div>
+        </section>
+        <section>
+            <h2 class="collapsible">Mortgage Product Analyzer</h2>
+            <div class="content">
+                <div class="metric">
+                    <p>Current Borrowed:</p>
+                    <p id="mortgage_amount">£ {{ original_borrowed|round(2)  }}</p>
+                </div>
+                <div class="metric">
+                    <p>New Interest Rate:</p>
+                    <input type="number" id="interest_rate" placeholder="Enter an interest rate..." />
+                </div>
+                <div class="metric">
+                    <p>New LTV:</p>
+                    <input type="number" id="ltv" placeholder="Enter a LTV..." />
+                </div>
+                <div class="metric">
+                    <p>New Borrowed:</p>
+                    <p id="new_borrowed"></p>
+                </div>
+                <div class="metric">
+                    <p>Difference Borrowed:</p>
+                    <p id="adjusted_borrowed"></p>
+                </div>
+                <div class="metric">
+                    <p>Annual Mortgage Payment:</p>
+                    <p id="annual_mortgage_payment"></p>
+                </div>
+                <div class="metric">
+                    <p>Monthly Mortgage Payment:</p>
+                    <p id="mortgage_payment"></p>
+                </div>
+                <div class="metric">
+                    <p>Monthly Cashflow:</p>
+                    <p id="monthly_cashflow"></p>
+                </div>
+            </div>
+        </section>
+        <section>
+            <h2 class="collapsible">LTV Adjustment</h2>
+            <div class="content">
+                <div class="metric">
+                    <p>Target LTV:</p>
+                    <input type="number" id="target_ltv" name="target_ltv" min="0" step="0.01" placeholder="Enter a target LTV...">
+                </div>
+                <div class="metric">
+                    <p>New Borrowed:</p>
+                    <p id="target_borrowed">-</p>
+                </div>
+                <div class="metric">
+                    <p>Adjusted Borrowed:</p>
+                    <p id="ltv_adjusted_borrowed">-</p>
+                </div>
+                <br>
+                <h3>Saving to hit target:</h3>
+                <br>
+                <div class="metric">
+                    <p>12 months:</p>
+                    <p id="saving_12_months">-</p>
+                </div>
+                <div class="metric">
+                    <p>24 months:</p>
+                    <p id="saving_24_months">-</p>
+                </div>
+                <div class="metric">
+                    <p>36 months:</p>
+                    <p id="saving_36_months">-</p>
+                </div>
+                <div class="metric">
+                    <p>48 months:</p>
+                    <p id="saving_48_months">-</p>
+                </div>
+                <div class="metric">
+                    <p>60 months:</p>
+                    <p id="saving_60_months">-</p>
+                </div>
+            </div>
+        </section>          
+
+        <div class="button-container">
+            <a href="{{ url_for('index') }}" class="back-button">Edit Property Info</a>
+            <a href="{{ url_for('results') }}" class="back-button">Back to Results</a>
+            <a href="{{ url_for('equity_release') }}" class="forward-button">Equity Release</a>
+        </div>
+        <script src="{{ url_for('static', filename='collapsible.js') }}"></script>
+        <script src="{{ url_for('static', filename='update_maxspend.js') }}"></script>
+        <script src="{{ url_for('static', filename='risk_calculator.js') }}"></script>
+        <script src="{{ url_for('static', filename='ltv_target.js') }}"></script>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Property Investment Calculator. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>

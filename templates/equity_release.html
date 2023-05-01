@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equity Release - Property Investment Calculator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/equiy_release_style.css') }}">
+</head>
+<body>
+    <header>
+        <h1></h1>
+    </header>
+    <main>
+        <section>
+            <h2>Assumptions</h2>
+            <div class="assumptions-container">
+            <div class="assumption">
+                <p>Purchase Price:</p>
+                <p id="purchase_price">£ {{ (property_obj.purchase_price)|round(2) }}</p>
+            </div>
+                <div class="assumption">
+                    <p>LTV:</p>
+                    <p id="ltv"> {{ (property_obj.LTV * 100)|round(2) }} %</p>
+                </div>
+                <div class="assumption">
+                    <p>Original Borrowed:</p>
+                    <p id="original_borrowed">£ {{ property_obj.mortgage }}</p>
+                </div>
+                <div class="assumption">
+                    <p>Annual Cashflow:</p>
+                    <p id="annual_cash_flow">£ {{ property_obj.annual_net_income|round(2) }}</p>
+                </div>                                       
+            </div>
+        </section>
+        <section>
+            <h2>Equity Release Calculator</h2>
+            <div class="metric">
+                <p>New LTV:</p>
+                <input type="number" id="equity_LTV" name="equity_LTV" placeholder="Enter new LTV..." oninput="updateResults()" required />
+            </div>
+            <div class="metric">
+                <p>New Purchase Price:</p>
+                <input type="number" id="new_purchase_price" name="remortgage_price" placeholder="Enter new purchase price..." oninput="updateResults()" required />
+            </div>
+            <div class="metric">
+                <p>Equity Release:</p>
+                <p id="equity_release">{{ equity_release }}</p>
+                </div>
+                <div class="metric">
+                    <p>New Cash Invested:</p>
+                    <p id="new_cash_invested">{{ new_cash_invested }}</p>
+                </div>
+                <div class="metric">
+                    <p>New ROI:</p>
+                    <p id="new_roi">{{ updated_roi }}</p>
+                </div>                
+        </section>        
+        <div class="button-container">
+            <a href="{{ url_for('index') }}" class="back-button">Edit Property Info</a>
+            <a href="{{ url_for('results') }}" class="back-button">Back to Results</a>
+            <a href="{{ url_for('risk_assessment') }}" class="forward-button">Risk Assessment</a>
+        </div>
+        <script src="{{ url_for('static', filename='update_equity.js') }}"></script>
+    </main>
+    
+    <footer>
+        <p>&copy; 2023 Property Investment Calculator. All rights reserved.</p>
+    </footer>
+</body>
+</html>

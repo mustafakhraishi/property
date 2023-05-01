@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property Investment Calculator - Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/results_style.css') }}" />
+</head>
+
+<body>
+    <header>
+        <h1></h1>
+    </header>
+    <main>
+        <section>
+            <h2>Assumptions</h2>
+            <div class="assumptions-container">
+                <div class="assumption">
+                    <p>LTV:</p>
+                    <p id="ltv"> {{ (property_obj.LTV * 100)|round(2) }}% </p>
+                </div>
+                <div class="assumption">
+                    <p>Interest Rate:</p>
+                    <p id="interest_rate">{{ (monthly_expenses_obj.interest_rate * 100)|round(2) }}%</p>
+                </div>
+                <div class="assumption">
+                    <p>Management:</p>
+                    <p id="management_percentage">{{ (monthly_expenses_obj.management_rate * 100)|round(2) }}%</p>
+                </div>
+                <div class="assumption">
+                    <p>Repairs:</p>
+                    <p id="repairs_percentage">{{ (monthly_expenses_obj.repairs * 100)|round(2) }}%</p>
+                </div>
+                <div class="assumption">
+                    <p>Void - weeks:</p>
+                    <p id="void_weeks">{{ monthly_expenses_obj.void_weeks|round(2) }}</p>
+                </div>
+            </div>
+        </section>
+        <section>
+            <h2 class="collapsible">Purchase Costs</h2>
+            <div class="content">
+                <div class="metrics-container">
+                    <div class="metric">
+                        <p>Purchase Price:</p>
+                        <p id="purchase_price">£ {{ property_obj.purchase_price|round(2) }}</p>
+                    </div>
+                    <div class="metric">
+                        <p>Stamp Duty:</p>
+                        <p id="stamp_duty">£ {{ stamp_duty }}</p>
+                    </div>
+                    <div class="metric">
+                        <p>Rennovation:</p>
+                        <p id="rennovation">£ {{ property_obj.renovation|round(2) }}</p>
+                    </div>
+                    <div class="metric">
+                        <p>Legal Fees:</p>
+                        <p id="legal_fees">£ {{ property_obj.legal_fees|round(2) }}</p>
+                    </div>
+                    <div class="metric">
+                        <p>Furnishing:</p>
+                        <p id="furnishing">£ {{ property_obj.furnishing|round(2) }}</p>
+                    </div>
+                    <div class="metric">
+                        <p>Mortgage Fees:</p>
+                        <p id="mortgage_fees">£ {{ property_obj.mortgage_fees|round(2) }}</p>
+                    </div>
+                    <div class="metric">
+                        <p>Deposit Required:</p>
+                        <p id="deposit_required">£ {{ deposit }}</p>
+                    </div>
+                    <div class="metric">
+                        <p>Mortgage:</p>
+                        <p id="mortgage_amount">£ {{ mortgage }}</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section>
+            <h2 class="collapsible">Key Metrics</h2>
+            <div class="content">
+                <div class="metrics-container">
+                    <div class="metric">
+                        <p>Total Cash Invested:</p>
+                        <p id="total_cash_invested">£ {{ total_cash_invested|round(2) }}</p>
+                    </div>
+                    <div class="metric">
+                        <p>Annual Cash Flow - ACF:</p>
+                        <p id="annual_cash_flow">£ {{ annual_cash_flow|round(2) }}</p>
+                    </div>
+                    <div class="metric">
+                        <p>Monthly Cash Flow:</p>
+                        <p id="monthly_cash_flow">£ {{ monthly_cash_flow|round(2) }}</p>
+                    </div>
+                    <div class="metric">
+                        <div class="tooltip-container">
+                            <p>Gross Yield:<img src="{{ url_for('static', filename='images/tooltip.bmp') }}" alt="Help Icon" class="help-icon">
+                                <span class="tooltip">annual rental income as a percentage of the property's purchase
+                                    price.</span>
+                            </p>
+                            <p id="gross_yield">{{ gross_yield|round(2) }} %</p>
+                        </div>
+                    </div>
+                    <div class="metric">
+                        <div class="tooltip-container">
+                            <p>Net Yield:<img src="{{ url_for('static', filename='images/tooltip.bmp') }}" alt="Help Icon" class="help-icon">
+                                <span class="tooltip">annual net income as a percentage of the property's purchase
+                                    price.</span>
+                            </p>
+                            <p id="net_yield">{{ net_yield|round(2) }} %</p>
+                        </div>
+                    </div>
+                    <div class="metric">
+                        <div class="tooltip-container">
+                            <p>ROI:<img src="{{ url_for('static', filename='images/tooltip.bmp') }}" alt="Help Icon" class="help-icon">
+                                <span class="tooltip"> net profit earned from a property investment as a percentage of
+                                    the cash invested.</span>
+                            </p>
+                            <p id="roi">{{ roi|round(2) }} %</p>
+                        </div>
+                    </div>
+                    <div class="metric">
+                        <div class="tooltip-container">
+                            <p>OER:<img src="{{ url_for('static', filename='images/tooltip.bmp') }}" alt="Help Icon" class="help-icon">
+                                <span class="tooltip">the proportion of gross rental income consumed by operating
+                                    expenses.</span>
+                            </p>
+                            <p id="oer">{{ oer|round(2) }} %</p>
+                        </div>
+                    </div>
+                    <div class="metric">
+                        <div class="tooltip-container">
+                            <p>ICR:<img src="{{ url_for('static', filename='images/tooltip.bmp') }}" alt="Help Icon" class="help-icon">
+                                <span class="tooltip">the extent to which a property's rental income covers the interest
+                                    on the loan.</span>
+                            </p>
+                            <p id="icr">{{ icr|round(2) }}</p>
+                        </div>
+                    </div>
+
+                    <div class="metric">
+                        <div class="tooltip-container">
+                            <p>Stress ICR:<img src="{{ url_for('static', filename='images/tooltip.bmp') }}" alt="Help Icon" class="help-icon">
+                                <span class="tooltip">the extent to which a property's rental income covers the interest
+                                    on the loan under a stress test.</span>
+                            </p>
+                            <p id="s_icr">{{ s_icr|round(2) }}</p>
+                        </div>
+                    </div>
+                    <div class="metric">
+                        <div class="tooltip-container">
+                            <p>ACF - Business Tax:<img src="{{ url_for('static', filename='images/tooltip.bmp') }}" alt="Help Icon" class="help-icon">
+                                <span class="tooltip">the annual cash flow after adjusting for a 19% corporation
+                                    tax.</span>
+                            </p>
+                            <p id="annual_cash_flow_business_tax">£ {{ annual_cash_flow_business_tax|round(2) }}</p>
+                        </div>
+                    </div>
+                    <div class="metric">
+                        <div class="tooltip-container">
+                            <p>ACF - Tax Adj:<img src="{{ url_for('static', filename='images/tooltip.bmp') }}" alt="Help Icon" class="help-icon">
+                                <span class="tooltip">the annual cash flow after adjusting for a 45% high earner
+                                    tax.</span>
+                            </p>
+                            <p id="annual_cash_flow_tax_adjusted">£ {{ annual_cash_flow_tax_adjusted|round(2) }}</p>
+                        </div>
+                    </div>
+                    <div class="metric">
+                        <div class="tooltip-container">
+                            <p>ROI - Tax Adj:<img src="{{ url_for('static', filename='images/tooltip.bmp') }}" alt="Help Icon" class="help-icon">
+                                <span class="tooltip">Compares the ROI when paying a 19% corporation tax versus a 45%
+                                    high earner tax.</span>
+                            </p>
+                            <p id="roi_tax_adjusted">{{ property_obj.roi_tax_adjusted()|round(2) }} %</p>
+                        </div>
+                    </div>
+                </div>
+        </section>
+        <section>
+            <h2 class="collapsible">Monthly Cashflow Breakdown</h2>
+            <div class="content">
+                <div class="metrics-container">
+                    <div class="metric">
+                        <p>Monthly Rent:</p>
+                        <p id="monthly_rent">£ {{ property_obj.monthly_rent|round(2) }}</p>
+                    </div>
+                    <div class="metric">
+                        <p>Mortgage Payment:</p>
+                        <p id="mortgage_payment">£ {{ mortgage_payment|round(2) }}</p>
+                    </div>
+                    <div class="metric">
+                        <p>Management Fees:</p>
+                        <p id="management_fees">£ {{ management_fees|round(2) }}</p>
+                    </div>
+                    <div class="metric">
+                        <p>Repair Allowance:</p>
+                        <p id="repair_allowance">£ {{ repair_allowance|round(2) }}</p>
+                    </div>
+                    <div class="metric">
+                        <p>Service Charge Payment:</p>
+                        <p id="service_charge_payment">£ {{ fixed_monthly_costs_obj.service_charge_payment|round(2) }}</p>
+                    </div>
+                    <div class="metric">
+                        <p>Ground Rent Payment:</p>
+                        <p id="ground_rent_payment">£ {{ fixed_monthly_costs_obj.ground_rent_payment|round(2) }}</p>
+                    </div>
+                    <div class="metric">
+                        <p>Insurance Payment:</p>
+                        <p id="insurance_payment">£ {{ fixed_monthly_costs_obj.insurance_payment|round(2) }}</p>
+                    </div>
+                    <div class="metric">
+                        <p>Bills Payment:</p>
+                        <p id="bills_payment">£ {{ fixed_monthly_costs_obj.bills_payment|round(2) }}</p>
+                    </div>
+                    <div class="metric">
+                        <p>Void Costs:</p>
+                        <p id="void_costs">£ {{ void_costs|round(2) }}</p>
+                    </div>
+                    <div class="metric">
+                        <p>Other Expenses Payment:</p>
+                        <p id="other_expenses_payment">£ {{ fixed_monthly_costs_obj.other_expenses_payment|round(2) }}</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="button-container">
+            <a href="{{ url_for('index') }}" class="back-button">Edit Property Info</a>
+            <a href="{{ url_for('risk_assessment') }}" class="forward-button">Risk Assessment</a>
+            <a href="{{ url_for('equity_release') }}" class="forward-button">Equity Release</a>
+        </div>
+
+        <script src="static\collapsible.js"></script>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Property Investment Calculator. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>

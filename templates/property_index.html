@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property Investment Calculator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/property_index_style.css') }}" />
+</head>
+
+<body>
+    <header>
+        <h1>Property Investment Calculator</h1>
+    </header>
+    <div class="progress-container">
+        <label for="progress-bar">Progress:</label>
+        <progress id="progress-bar" value="0" max="100"></progress>
+        <div class="milestone-container">
+            <span class="milestone" data-value="25">Property Information</span>
+            <span class="milestone" data-value="50">Purchase Costs</span>
+            <span class="milestone" data-value="75">Monthly Expenses</span>
+            <span class="milestone" data-value="100">Fixed Monthly Costs</span>
+        </div>
+    </div>
+    <main>
+        <form onsubmit="saveFormDataToLocalStorage();" action="/" method="POST">
+            <fieldset>
+                <legend>Property Information</legend>
+                <div>
+                    <label for="purchase_price">Purchase Price:</label>
+                    <input type="number" id="purchase_price" name="purchase_price" required>
+                </div>
+                <div>
+                    <label for="first_time_buyer">First Time Buyer:</label>
+                    <input type="checkbox" id="first_time_buyer" name="first_time_buyer">
+                </div>                
+                <div>
+                    <label for="renovation">Renovation:</label>
+                    <input type="number" id="renovation" name="renovation" required>
+                </div>
+                <div>
+                    <label for="legal_fees">Legal Fees:</label>
+                    <input type="number" id="legal_fees" name="legal_fees" required>
+                </div>
+                <div>
+                    <label for="furnishing">Furnishing:</label>
+                    <input type="number" id="furnishing" name="furnishing" required>
+                </div>
+                <div>
+                    <label for="mortgage_fees">Mortgage Fees:</label>
+                    <input type="number" id="mortgage_fees" name="mortgage_fees" required>
+                </div>
+                <div>
+                    <label for="monthly_rent">Monthly Rent:</label>
+                    <input type="number" id="monthly_rent" name="monthly_rent" required>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Purchase Costs</legend>
+                <div>
+                    <div class="tooltip-container">
+                        <label for="LTV">Loan-to-value Ratio (LTV):
+                            <img src="{{ url_for('static', filename='images/tooltip.bmp') }}" alt="Help Icon" class="help-icon">
+                            <span class="tooltip">Enter a percentage e.g. 70% LTV of £100,000 property value
+                                = £70,000 mortgage</span></label>
+                        <input type="number" id="LTV" name="LTV" step="0.01" required>
+                    </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Monthly Expenses</legend>
+                <div>
+                    <label for="interest_rate">Interest Rate:</label>
+                    <input type="number" id="interest_rate" name="interest_rate" step="0.0001" required>
+                </div>
+                <div>
+                    <label for="management_rate">Management Rate:</label>
+                    <input type="number" id="management_rate" name="management_rate" step="0.01" required>
+                </div>
+                <div>
+                    <div class="tooltip-container">
+                        <label for="repairs">Repairs:
+                            <img src="{{ url_for('static', filename='images/tooltip.bmp') }}" alt="Help Icon" class="help-icon">
+                            <span class="tooltip">Enter a percentage (%). Calculated as a % of the monthly
+                                rent.</span></label>
+                        <input type="number" id="repairs" name="repairs" required>
+                    </div>
+                    <div>
+                        <div class="tooltip-container">
+                            <label for="void_weeks">Void Weeks:
+                            <img src="{{ url_for('static', filename='images/tooltip.bmp') }}" alt="Help Icon" class="help-icon">
+                                <span class="tooltip">Enter the number of weeks you estimate the property to be
+                                    empty.</span></label>
+                            <input type="number" id="void_weeks" name="void_weeks" required>
+                        </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Fixed Monthly Costs</legend>
+                <label for="service_charge">Service Charge:</label>
+                <input type="number" id="service_charge" name="service_charge" required>
+                </div>
+                <div>
+                    <label for="ground_rent">Ground Rent:</label>
+                    <input type="number" id="ground_rent" name="ground_rent" required>
+                </div>
+                <div>
+                    <label for="insurance">Insurance:</label>
+                    <input type="number" id="insurance" name="insurance" required>
+                    <div>
+                        <label for="bills">Bills:</label>
+                        <input type="number" id="bills" name="bills" required>
+                    </div>
+                    <div>
+                        <label for="other_expenses">Other Expenses:</label>
+                        <input type="number" id="other_expenses" name="other_expenses" required>
+                    </div>
+            </fieldset>
+            <div class="form-submit">
+                <input type="submit" value="Submit">
+            </div>
+        </form>
+        <script src="{{ url_for('static', filename='property_index_script.js') }}"></script>
+        <script src="{{ url_for('static', filename='save_form.js') }}"></script>    
+    </main>
+    <footer>
+        <p>&copy; 2023 Property Investment Calculator. All rights reserved.</p>
+    </footer>
